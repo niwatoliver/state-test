@@ -10,7 +10,6 @@ const BACKEND_BASE_URL =
     : // : `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`;
       `https://state-test-zeta.vercel.app`;
 
-// https://github.com/honojs/hono/blob/f616ed9abe3e3cc28d3c96894020897796bfbde2/src/client/client.ts#L8-L24
 const createProxy = <T extends Hono>(
   getOption: () => Promise<ClientRequestOptions>,
   path: string[],
@@ -30,14 +29,15 @@ const createProxy = <T extends Hono>(
     },
   });
 
-export const backendClient = () =>
+export const backendClient = (_token?: string) =>
   createProxy<HonoType>(async () => {
     // TODO expire的なやつ
-    const token = "token";
+    const token =
+      _token && (await sign({} as Record<string, unknown>, "secret", "HS256"));
     return {
       headers: {
         ...(token && {
-          Authorization: `Bearer ${token}`,
+          Authorization: `Bearer ${_token}`,
         }),
       },
     };
