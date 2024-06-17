@@ -1,10 +1,10 @@
 import { fetchTest } from "@/actions";
 
 export default async function TestComponent({ from }: { from: string }) {
-  const now = await fetchTest();
+  const json = await fetchTest();
   return (
     <div>
-      {from}: {now}
+      {from}: {JSON.stringify(json)}
     </div>
   );
 }

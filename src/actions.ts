@@ -15,6 +15,5 @@ export async function fetchTest() {
   //   next: { tags: ["counter-test"] },
   //   cache: "no-store",
   // });
-  const json = await hello.json();
-  return json.now;
+  return await hello.json();
 }
