@@ -8,7 +8,7 @@ const BACKEND_BASE_URL =
 export async function fetchTest() {
   const response = await fetch(`${BACKEND_BASE_URL}/api`, {
     next: { tags: ["counter-test"] },
-    cache: "no-cache",
+    cache: "no-store",
   });
   const json = await response.json();
   return json.now;
