@@ -6,10 +6,10 @@ const BACKEND_BASE_URL =
     : `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`;
 
 export async function fetchTest() {
-  // const response = await fetch(`${BACKEND_BASE_URL}/api`, {
-  //   next: { tags: ["counter-test"] },
-  // });
-  // const json = await response.json();
-  // return json.now;
-  return 1;
+  const response = await fetch(`${BACKEND_BASE_URL}/api`, {
+    next: { tags: ["counter-test"] },
+    cache: "no-store",
+  });
+  const json = await response.json();
+  return json.now;
 }
