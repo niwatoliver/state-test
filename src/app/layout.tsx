@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import TestComponent from "@/components/TestComponent";
+import { Suspense } from "react";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -14,7 +15,9 @@ export default function RootLayout({
   return (
     <html lang="ja">
       <body>
-        <TestComponent from={"Layout"} />
+        <Suspense fallback={<></>}>
+          <TestComponent from={"Layout"} />
+        </Suspense>
         {children}
       </body>
     </html>
