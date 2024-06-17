@@ -33,12 +33,12 @@ const createProxy = <T extends Hono>(
 export const backendClient = () =>
   createProxy<HonoType>(async () => {
     // TODO expire的なやつ
-    // const token = "";
+    const token = "token";
     return {
-      // headers: {
-      //   ...(token && {
-      //     Authorization: `Bearer ${token}`,
-      //   }),
-      // },
+      headers: {
+        ...(token && {
+          Authorization: `Bearer ${token}`,
+        }),
+      },
     };
   }, []);
